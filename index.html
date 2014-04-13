@@ -112,7 +112,14 @@
           $("#crack-time").text(estimate.crack_time);
           $("#entropy").text(estimate.entropy);
         }
+        
+        var lastCheckedPw = null;
         function runCheck(pw) {
+          if ( pw == lastCheckedPw ) {
+            return;
+          } else {
+            lastCheckedPw = pw;
+          }
           var estimate = zxcvbn(pw);
           
           setProgressBarByScore(estimate.score);
