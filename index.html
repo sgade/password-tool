@@ -2,6 +2,39 @@
 <html>
   <head>
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <style>
+      .pw-widget input {
+        width: 100%;
+      }
+      .pw-widget .bar {
+        height: 3px;
+        
+        transition: width 0.25s;
+        -webkit-transition: width 0.25s;
+        
+        background-color: red;
+      }
+      .pw-widget .zero {
+        width: 10%;
+        background-color: red;
+      }
+      .pw-widget .one {
+        width: 25%;
+        background-color: red;
+      }
+      .pw-widget .two {
+        width: 50%;
+        background-color: yellow;
+      }
+      .pw-widget .three {
+        width: 75%;
+        background-color: yellow;
+      }
+      .pw-widget .four {
+        width: 100%;
+        background-color: green;
+      }
+    </style>
   </head>
   <body>
     <div class="container jumbotron">
@@ -14,7 +47,10 @@
       <div class="row">
         <div class="col-md-6">
           Enter password to test its strength:
-          <input type="text" id="pw" />
+          <div class="pw-widget">
+            <input type="text" id="pw" />
+            <div class="bar zero"></div>
+          </div>
         </div>
         <div class="col-md-6">
           <strong>
@@ -25,14 +61,19 @@
       </div>
       
       <div class="row">
-        <div class="col-md-4">
-          Strength: <span id="text"></span>
-        </div>
-        <div class="col-md-8">
-          <div class="progress">
-            <div id="bar" class="progress-bar" role="progressbar">
-              <span id="bar-text"></span>
-            </div>
+        <div class="col-md-6">
+          <div>
+            Time to calculate: <span id="calc-time"></span>ms
+          </div>
+          <hr>
+          <div>
+            Score: <span id="score"></span>
+          </div>
+          <div>
+            Time to crack: <span id="crack-time-display"></span> (<span id="crack-time"></span>s)
+          </div>
+          <div>
+            Entropy: <span id="entropy"></span>
           </div>
         </div>
       </div>
@@ -42,29 +83,45 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
     <script>
       $(function() {
-        $("#pw").keyup(function() {
-          var pw = $("#pw").val();
-          
-          var estimate = zxcvbn(pw);
-          console.log(estimate);
-          
-          $("#bar").css('width', (estimate.score/4*100)+"%");
-          var barColor = 'danger';
-          switch ( estimate.score ) {
+        function setProgressBarByScore(score) {
+          var klass = 'zero';
+          switch ( score ) {
+            case 1:
+              klass = 'one';
+              break;
             case 2:
-              barColor = 'warning';
+              klass = 'two';
+              break;
+            case 3:
+              klass = 'three';
               break;
             case 4:
-              barColor = 'success';
+              klass = 'four';
               break;
           }
-          $("#bar").attr('class', '').addClass('progress-bar ' + 'progress-bar-'+barColor);
           
-          var text = 'Score: ' + estimate.score;
-          text += ' - ' + estimate.crack_time_display + '(' + estimate.crack_time + 's)';
-          $("#text").text(text);
-          $("#bar-text").text('Entropy: '+ estimate.entropy);
+          $(".pw-widget .bar").attr('class', '').addClass('bar ' + klass);
+        }
+        function showEstimateStats(estimate) {
+          console.log(estimate);
+          $("#calc-time").text(estimate.calc_time);
+          $("#score").text(estimate.score);
+          $("#crack-time-display").text(estimate.crack_time_display);
+          $("#crack-time").text(estimate.crack_time);
+          $("#entropy").text(estimate.entropy);
+        }
+        function runCheck(pw) {
+          var estimate = zxcvbn(pw);
+          
+          setProgressBarByScore(estimate.score);
+          showEstimateStats(estimate);
+        }
+        
+        $("#pw").keyup(function() {
+          var pw = $("#pw").val();
+          runCheck(pw);
         });
+        runCheck("");
       });
     </script>
   </body>
