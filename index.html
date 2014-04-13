@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+  </head>
+  <body>
+    <h1>Password Strength</h1>
+    <p>
+      Enter password:
+      <input type="text" id="pw" />
+    </p>
+    <p>
+      Strength: <span id="text"></span>
+      <div class="progress">
+        <div id="bar" class="progress-bar" role="progressbar">
+          <span id="bar-text"></span>
+        </div>
+      </div>
+    </p>
+    
+    <script src="https://rawgithub.com/dropbox/zxcvbn/master/zxcvbn.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+    <script>
+      $(function() {
+        $("#pw").keyup(function() {
+          var pw = $("#pw").val();
+          
+          var estimate = zxcvbn(pw);
+          console.log(estimate);
+          
+          $("#bar").css('width', (estimate.score/4*100)+"%");
+          var barColor = 'danger';
+          switch ( estimate.score ) {
+            case 2:
+              barColor = 'warning';
+              break;
+            case 4:
+              barColor = 'success';
+              break;
+          }
+          $("#bar").attr('class', '').addClass('progress-bar ' + 'progress-bar-'+barColor);
+          
+          var text = 'Score: ' + estimate.score;
+          text += ' - ' + estimate.crack_time_display + '(' + estimate.crack_time + 's)';
+          $("#text").text(text);
+        });
+      });
+    </script>
+  </body>
+</html>
