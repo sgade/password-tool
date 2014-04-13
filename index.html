@@ -4,25 +4,39 @@
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
   </head>
   <body>
-    <h1>Password Strength</h1>
-    <p>
-      <strong>
-        No password is stored on any server. This is just a client-side application in your browser.
-        Everything you do is your own fault.
-      </strong>
-    </p>
-    <p>
-      Enter password to test its strength:
-      <input type="text" id="pw" />
-    </p>
-    <p>
-      Strength: <span id="text"></span>
-      <div class="progress">
-        <div id="bar" class="progress-bar" role="progressbar">
-          <span id="bar-text"></span>
+    <div class="container jumbotron">
+      <div class="row">
+        <div class="text-center">
+          <h1>Password Strength</h1>
         </div>
       </div>
-    </p>
+      
+      <div class="row">
+        <div class="col-md-6">
+          Enter password to test its strength:
+          <input type="text" id="pw" />
+        </div>
+        <div class="col-md-6">
+          <strong>
+            No password is stored on any server. This is just a client-side application in your browser.
+            Everything you do is your own fault.
+          </strong>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-4">
+          Strength: <span id="text"></span>
+        </div>
+        <div class="col-md-8">
+          <div class="progress">
+            <div id="bar" class="progress-bar" role="progressbar">
+              <span id="bar-text"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     
     <script src="https://rawgithub.com/dropbox/zxcvbn/master/zxcvbn.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
@@ -49,6 +63,7 @@
           var text = 'Score: ' + estimate.score;
           text += ' - ' + estimate.crack_time_display + '(' + estimate.crack_time + 's)';
           $("#text").text(text);
+          $("#bar-text").text('Entropy: '+ estimate.entropy);
         });
       });
     </script>
