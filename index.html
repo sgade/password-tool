@@ -138,10 +138,18 @@
           runAsync(function() {
             showEstimateStats(estimate);
             
+            if ( pw != $("#pw").val() ) {
+              return;
+            }
+            
             var estimate = zxcvbn(pw);
             
-            setProgressBarByScore(estimate.score);
-            showEstimateStats(estimate);
+            if ( pw == $("#pw").val() ) {
+              setProgressBarByScore(estimate.score);
+              showEstimateStats(estimate);
+            } else {
+              console.log("calculated '" + pw + "' but now its '" + $("#pw").val() + "'...");
+            }
           });
         }
         
