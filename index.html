@@ -114,11 +114,18 @@
           $(".pw-widget .bar").attr('class', '').addClass('bar ' + klass);
         }
         function showEstimateStats(estimate) {
-          $("#calc-time").text(estimate.calc_time);
-          $("#score").text(estimate.score);
-          $("#crack-time-display").text(estimate.crack_time_display);
-          $("#crack-time").text(estimate.crack_time);
-          $("#entropy").text(estimate.entropy);
+          estimate = estimate || {};
+          var calcTime = estimate.calc_time || '?';
+          var score = estimate.score;
+          var crackTimeDisplay = estimate.crack_time_display || 'unknown';
+          var crackTime = estimate.crack_time;
+          var entropy = estimate.entropy;
+          
+          $("#calc-time").text(calcTime);
+          $("#score").text(score);
+          $("#crack-time-display").text(crackTimeDisplay);
+          $("#crack-time").text(crackTime);
+          $("#entropy").text(entropy);
         }
         
         var lastCheckedPw = null;
@@ -129,6 +136,8 @@
             lastCheckedPw = pw;
           }
           runAsync(function() {
+            showEstimateStats(estimate);
+            
             var estimate = zxcvbn(pw);
             
             setProgressBarByScore(estimate.score);
