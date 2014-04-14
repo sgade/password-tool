@@ -24,17 +24,13 @@ $(function() {
   }
   function showEstimateStats(estimate) {
     estimate = estimate || {};
-    var calcTime = estimate.calc_time || '?';
-    var score = estimate.score;
     var crackTimeDisplay = estimate.crack_time_display || 'unknown';
-    var crackTime = estimate.crack_time;
-    var entropy = estimate.entropy;
     
-    $("#calc-time").text(calcTime);
-    $("#score").text(score);
+    $("#calc-time").text(estimate.calc_time);
+    $("#score").text(estimate.score);
     $("#crack-time-display").text(crackTimeDisplay);
-    $("#crack-time").text(crackTime);
-    $("#entropy").text(entropy);
+    $("#crack-time").text(estimate.crack_time);
+    $("#entropy").text(estimate.entropy);
   }
   
   var lastCheckedPw = null;
