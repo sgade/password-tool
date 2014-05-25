@@ -1,6 +1,6 @@
-# password-tool
+# Password Tool
 
-Estimate your password strength.
+Test your passwords.
 
 Using the [zxcvbn](https://github.com/dropbox/zxcvbn) library by dropbox.
 
