@@ -13,23 +13,23 @@
   
   background-color: red;
 }
-.pw-widget .zero {
+.pw-widget .bar.score-0 {
   width: 10%;
   background-color: red;
 }
-.pw-widget .one {
+.pw-widget .bar.score-1 {
   width: 25%;
   background-color: red;
 }
-.pw-widget .two {
+.pw-widget .bar.score-2 {
   width: 50%;
   background-color: yellow;
 }
-.pw-widget .three {
+.pw-widget .bar.score-3 {
   width: 75%;
   background-color: yellow;
 }
-.pw-widget .four {
+.pw-widget .bar.score-4 {
   width: 100%;
   background-color: green;
 }

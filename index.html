@@ -15,13 +15,13 @@
         </div>
       </header>
       
-      <div class="row">
+      <div class="row" ng-app="passwordTool" ng-controller="passwordStrengthController">
         <div class="col-md-6">
           
           <!-- Password widget -->
           <div class="pw-widget">
-            <input type="text" class="form-control" id="pw" placeholder="Type any password..." autofocus="true">
-            <div class="bar zero"></div>
+            <input type="text" class="form-control" placeholder="Type any password..." autofocus="true" ng-model="password" ng-change="onPasswordChange()">
+            <div class="bar {{barSizeClass}}"></div>
           </div>
           
         </div>
@@ -29,16 +29,16 @@
         <div class="col-md-6">
           <!-- Info by zxcvbn -->
           <div>
-            Time to calculate the password's strength: <span id="calc-time"></span>ms
+            Time to calculate the password's strength: {{estimate.calc_time}}ms
           </div>
           <div>
-            Score: <span id="score"></span>
+            Score: {{estimate.score}}
           </div>
           <div>
-            Time to crack: <span id="crack-time-display"></span> (<span id="crack-time"></span>s)
+            Time to crack: {{estimate.crack_time_display}} ({{estimate.crack_time}}s)
           </div>
           <div>
-            Entropy: <span id="entropy"></span>
+            Entropy: {{estimate.entropy}}
           </div>
         </div>
       </div>
@@ -57,8 +57,8 @@
     </div>
     
     <!-- Scripts -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
-    <script src="script.js" async="true"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
     <script src="https://rawgithub.com/dropbox/zxcvbn/master/zxcvbn.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>
