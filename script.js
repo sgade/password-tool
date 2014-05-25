@@ -8,5 +8,10 @@
       
       $scope.barSizeClass = "score-" + $scope.estimate.score;
     };
+    
+    $scope.inputPasswordType = "";
+    $scope.onShowPaswordChange = function() {
+      $scope.inputPasswordType = ( $scope.showPassword ) ? "text" : "password";
+    };
   });
 }());
