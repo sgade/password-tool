@@ -1,12 +1,10 @@
 .pw-widget input {
   width: 100%;
 }
-.pw-widget input:focus {
-  margin-bottom: 1px;
-}
+
 .pw-widget .bar {
-  height: 3px;
-  border-radius: 1px;
+  height: 5px;
+  border-radius: 3px;
   
   transition: width 0.25s;
   -webkit-transition: width 0.25s;
