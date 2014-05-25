@@ -33,3 +33,10 @@
   width: 100%;
   background-color: green;
 }
+
+footer {
+  margin-top: 6px;
+  padding-top: 3px;
+  border: 0px solid #ccc;
+  border-top-width: 1px;
+}

@@ -7,36 +7,30 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <div class="container jumbotron">
-      <div class="row">
+    <div class="container">
+      <!-- Header -->
+      <header class="row">
         <div class="text-center">
-          <h1>Password Strength</h1>
+          <h1>Password Tool</h1>
         </div>
-      </div>
+      </header>
       
       <div class="row">
         <div class="col-md-6">
-          Enter password to test its strength:
+          
+          <!-- Password widget -->
           <div class="pw-widget">
-            <input type="text" id="pw" />
+            <input type="text" class="form-control" id="pw" placeholder="Type any password..." autofocus="true">
             <div class="bar zero"></div>
           </div>
+          
         </div>
+        
         <div class="col-md-6">
-          <strong>
-            No password is stored on any server. This is just a client-side application in your browser.
-            Everything you do is your own fault.
-          </strong>
-          If you want to check yourself, see the <a href="https://github.com/sgade/password-tool">code on Github</a>.
-        </div>
-      </div>
-      
-      <div class="row">
-        <div class="col-md-6">
+          <!-- Info by zxcvbn -->
           <div>
-            Time to calculate: <span id="calc-time"></span>ms
+            Time to calculate the password's strength: <span id="calc-time"></span>ms
           </div>
-          <hr>
           <div>
             Score: <span id="score"></span>
           </div>
@@ -48,8 +42,21 @@
           </div>
         </div>
       </div>
+      
+      <!-- Footer -->
+      <footer class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <!-- Disclaimer -->
+          <strong>
+            No password is stored on any server. This is just a client-side application in your browser.
+            Everything you do is your own fault.
+          </strong>
+          If you want to check yourself, see the <a href="https://github.com/sgade/password-tool">code on Github</a>.
+        </div>  
+      </footer>
     </div>
     
+    <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
     <script src="script.js" async="true"></script>
     <script src="https://rawgithub.com/dropbox/zxcvbn/master/zxcvbn.js"></script>
