@@ -18,7 +18,6 @@
     $scope.password = "";
     $scope.onPasswordChange = function() {
       runAsync(function() {
-        console.log("async");
         $scope.estimate = zxcvbn($scope.password);
       
         $scope.barSizeClass = "score-" + $scope.estimate.score;
