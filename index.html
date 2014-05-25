@@ -20,7 +20,7 @@
           
           <!-- Password widget -->
           <div class="pw-widget">
-            <input type="text" class="form-control" placeholder="Type any password..." autofocus="true" ng-model="password" ng-change="onPasswordChange()">
+            <input type="text" class="form-control" placeholder="Type any password..." autofocus="true" ng-model="password" ng-keyup="onPasswordChange()">
             <div class="bar {{barSizeClass}}"></div>
           </div>
           
